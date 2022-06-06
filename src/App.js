@@ -1,23 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { useSelector, useDispatch } from "react-redux";
+import React from "react";
+import { getPost } from "./redux/docs/post";
 
 function App() {
+  const post = useSelector((state) => state.post);
+  const dispatch = useDispatch();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <button onClick={() => dispatch(getPost())}>Obtener Post</button>
+      <p>{post.post?.id}</p>
+      <p>{post.post?.title}</p>
+      <p>{post.post?.body}</p>
     </div>
   );
 }
